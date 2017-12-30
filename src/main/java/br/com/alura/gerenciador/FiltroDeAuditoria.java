@@ -2,6 +2,7 @@ package br.com.alura.gerenciador;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
@@ -16,7 +17,15 @@ public class FiltroDeAuditoria implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         String uri = httpServletRequest.getRequestURI();
-        System.out.println("Acesso a URI: "+uri);
+        Cookie[] cookies = httpServletRequest.getCookies();
+        String cookie_usuario = "[DESLOGADO]";
+        if (cookies!=null){
+            for (Cookie cookie: cookies) {
+                if (cookie.getName().equals(Strings.COOKIE))
+                    cookie_usuario = cookie.getValue();
+            }
+        }
+        System.out.println("Usuário "+cookie_usuario+" acessando URI: "+uri);
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
