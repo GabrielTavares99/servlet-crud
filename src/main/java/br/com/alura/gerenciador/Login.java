@@ -17,9 +17,12 @@ public class Login extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         String email = req.getParameter(Strings.EMAIL);
         String senha = req.getParameter(Strings.SENHA);
+
         Usuario usuario = new UsuarioDAO().buscaPorEmailESenha(email, senha);
+
         if (usuario == null){
             PrintWriter writer = resp.getWriter();
             writer.println(Strings.ABRE_HTML_BODY);
