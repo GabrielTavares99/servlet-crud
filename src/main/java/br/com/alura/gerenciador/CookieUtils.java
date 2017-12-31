@@ -5,9 +5,15 @@ import javax.servlet.http.HttpServletRequest;
 
 public class CookieUtils {
 
-    public Cookie getCookieUsuarioLogado(HttpServletRequest httpServletRequest){
+    private Cookie[] cookies;
 
-        Cookie[] cookies = httpServletRequest.getCookies();
+    public CookieUtils(Cookie[] cookies){
+        this.cookies = cookies;
+    }
+
+    public Cookie getCookieUsuarioLogado(){
+
+        Cookie[] cookies = this.cookies;
 
         if (cookies == null) return null;
 

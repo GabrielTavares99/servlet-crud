@@ -4,10 +4,7 @@ import br.com.alura.gerenciador.dao.UsuarioDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -33,8 +30,10 @@ public class Login extends HttpServlet{
             writer.println(Strings.ABRE_HTML_BODY);
             writer.println("<h2>Você está logado como:"+usuario.getEmail()+"</h2>");
             writer.println(Strings.FECHA_HTML_BODY);
-            Cookie cookie = new Cookie(Strings.COOKIE, usuario.getEmail());
-            resp.addCookie(cookie);
+//            Cookie cookie = new Cookie(Strings.COOKIE, usuario.getEmail());
+            HttpSession session = req.getSession();
+            session.setAttribute(Strings.COOKIE, usuario);
+//            resp.addCookie(cookie);
         }
 
     }
