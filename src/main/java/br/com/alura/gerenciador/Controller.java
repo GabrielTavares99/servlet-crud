@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/fazTudo")
-public class FazTudo extends HttpServlet{
+@WebServlet(urlPatterns = "/controller")
+public class Controller extends HttpServlet{
 
     @Override
     public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {

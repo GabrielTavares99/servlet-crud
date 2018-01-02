@@ -27,7 +27,7 @@ public class BuscaEmpresa implements Tarefa {
 //    }
 
 //    @Override
-//    public void destroy() {
+//    public void destroy()
 //        super.destroy();
 //        System.out.println("Destruindo Servlet BuscaEmpresa "+this);
 //    }
