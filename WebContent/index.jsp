@@ -21,7 +21,7 @@
         <input type="submit" value="Enviar">
     </form>
     </br>
-    <form action="login" method="post">
+    <form action="controller?tarefa=Login" method="post">
         Email: <input type="text" name="email">
         Senha: <input type="password" name="senha">
         <input type="submit" value="Entrar">
