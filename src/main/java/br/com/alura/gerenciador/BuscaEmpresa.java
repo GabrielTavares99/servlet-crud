@@ -2,6 +2,7 @@ package br.com.alura.gerenciador;
 
 import br.com.alura.gerenciador.dao.EmpresaDAO;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,15 +45,20 @@ public class BuscaEmpresa extends HttpServlet {
         EmpresaDAO empresaDAO = new EmpresaDAO();
         Collection<Empresa> empresas = empresaDAO.buscaPorSimilaridade(filtro);
 
-        PrintWriter printWriter = resp.getWriter();
-        printWriter.println("<html><body>");
-        printWriter.println("<h1>Empresas</h1>");
-        printWriter.println("<ul>");
-        for (Empresa empresa: empresas) {
-            printWriter.println("<li>"+empresa.getId()+" "+empresa.getNome()+"</li>");
-        }
-        printWriter.println("</ul>");
-        printWriter.println("</body><html>");
+        req.setAttribute("empresas", empresas);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher(Strings.PAGINAS_HTML + "buscaEmpresa.jsp");
+        requestDispatcher.forward(req, resp);
+
+
+//        PrintWriter printWriter = resp.getWriter();
+//        printWriter.println("<html><body>");
+//        printWriter.println("<h1>Empresas</h1>");
+//        printWriter.println("<ul>");
+//        for (Empresa empresa: empresas) {
+//            printWriter.println("<li>"+empresa.getId()+" "+empresa.getNome()+"</li>");
+//        }
+//        printWriter.println("</ul>");
+//        printWriter.println("</body><html>");
 
     }
 }
