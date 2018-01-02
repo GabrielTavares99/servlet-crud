@@ -2,6 +2,7 @@ package br.com.alura.gerenciador;
 
 import br.com.alura.gerenciador.dao.EmpresaDAO;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +20,10 @@ public class CadastraEmpresa extends HttpServlet {
         Empresa empresa = new Empresa(nomeEmpresa);
         new EmpresaDAO().adiciona(empresa);
         PrintWriter writer = resp.getWriter();
-        writer.println("<html><body>Empresa cadastrada com sucesso: "+empresa.getNome()+"</body></html>");
+//        writer.println("<html><body>Empresa cadastrada com sucesso: "+empresa.getNome()+"</body></html>");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher(Strings.PAGINAS_HTML + "novaEmpresa.jsp");
+        req.setAttribute("empresa", empresa);
+        requestDispatcher.forward(req, resp);
+
     }
 }

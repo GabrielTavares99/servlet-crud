@@ -7,5 +7,6 @@ public class Strings {
     static String COOKIE = "usuario.logado";
     static String ABRE_HTML_BODY = "<html><body>";
     static String FECHA_HTML_BODY = "</html></body>";
+    static String PAGINAS_HTML = "/WEB-INF/paginas/";
 
 }
