@@ -14,10 +14,33 @@ import java.util.Collection;
 @WebServlet(urlPatterns = "/busca")
 public class BuscaEmpresa extends HttpServlet {
 
+    public BuscaEmpresa(){
+        System.out.println("Contruindo Servlet BuscaEmpresa "+this);
+    }
+
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        System.out.println("Inicializando Servlet BuscaEmpresa "+this);
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+        System.out.println("Destruindo Servlet BuscaEmpresa "+this);
+    }
+
+//    String filtro;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
         String filtro = req.getParameter("filtro");
+//        try {
+//            Thread.sleep(10000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         EmpresaDAO empresaDAO = new EmpresaDAO();
         Collection<Empresa> empresas = empresaDAO.buscaPorSimilaridade(filtro);
 
