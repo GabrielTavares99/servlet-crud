@@ -12,31 +12,59 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
 
-@WebServlet(urlPatterns = "/busca")
-public class BuscaEmpresa extends HttpServlet {
+//@WebServlet(urlPatterns = "/busca")
+public class BuscaEmpresa implements Tarefa {
 
     public BuscaEmpresa(){
         System.out.println("Contruindo Servlet BuscaEmpresa "+this);
     }
 
 
-    @Override
-    public void init() throws ServletException {
-        super.init();
-        System.out.println("Inicializando Servlet BuscaEmpresa "+this);
-    }
+//    @Override
+//    public void init() throws ServletException {
+//        super.init();
+//        System.out.println("Inicializando Servlet BuscaEmpresa "+this);
+//    }
 
-    @Override
-    public void destroy() {
-        super.destroy();
-        System.out.println("Destruindo Servlet BuscaEmpresa "+this);
-    }
+//    @Override
+//    public void destroy() {
+//        super.destroy();
+//        System.out.println("Destruindo Servlet BuscaEmpresa "+this);
+//    }
 
 //    String filtro;
+//    @Override
+//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//
+//        String filtro = req.getParameter("filtro");
+////        try {
+////            Thread.sleep(10000);
+////        } catch (InterruptedException e) {
+////            e.printStackTrace();
+////        }
+//        EmpresaDAO empresaDAO = new EmpresaDAO();
+//        Collection<Empresa> empresas = empresaDAO.buscaPorSimilaridade(filtro);
+//
+//        req.setAttribute("empresas", empresas);
+//        RequestDispatcher requestDispatcher = req.getRequestDispatcher(Strings.PAGINAS_HTML + "buscaEmpresa.jsp");
+//        requestDispatcher.forward(req, resp);
+//
+//
+////        PrintWriter printWriter = resp.getWriter();
+////        printWriter.println("<html><body>");
+////        printWriter.println("<h1>Empresas</h1>");
+////        printWriter.println("<ul>");
+////        for (Empresa empresa: empresas) {
+////            printWriter.println("<li>"+empresa.getId()+" "+empresa.getNome()+"</li>");
+////        }
+////        printWriter.println("</ul>");
+////        printWriter.println("</body><html>");
+//
+//    }
+
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
-        String filtro = req.getParameter("filtro");
+    public String executa(HttpServletRequest request, HttpServletResponse response) {
+        String filtro = request.getParameter("filtro");
 //        try {
 //            Thread.sleep(10000);
 //        } catch (InterruptedException e) {
@@ -45,20 +73,8 @@ public class BuscaEmpresa extends HttpServlet {
         EmpresaDAO empresaDAO = new EmpresaDAO();
         Collection<Empresa> empresas = empresaDAO.buscaPorSimilaridade(filtro);
 
-        req.setAttribute("empresas", empresas);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher(Strings.PAGINAS_HTML + "buscaEmpresa.jsp");
-        requestDispatcher.forward(req, resp);
-
-
-//        PrintWriter printWriter = resp.getWriter();
-//        printWriter.println("<html><body>");
-//        printWriter.println("<h1>Empresas</h1>");
-//        printWriter.println("<ul>");
-//        for (Empresa empresa: empresas) {
-//            printWriter.println("<li>"+empresa.getId()+" "+empresa.getNome()+"</li>");
-//        }
-//        printWriter.println("</ul>");
-//        printWriter.println("</body><html>");
+        request.setAttribute("empresas", empresas);
+        return (Strings.PAGINAS_HTML + "buscaEmpresa.jsp");
 
     }
 }

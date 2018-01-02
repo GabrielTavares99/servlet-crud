@@ -12,14 +12,11 @@
         <c:when test="${usuarioLogado!=null}">
             ${usuarioLogado.email} bem vindo ao nosso gerenciador de empresas!<br/>
         </c:when>
-        <c:otherwise>
-
-        </c:otherwise>
     </c:choose>
 <%--<c:if test="${usuarioLogado!=null}">--%>
 <%--</c:if>--%>
 
-    <form action="cadastraEmpresa" method="post">
+    <form action="fazTudo?tarefa=CadastraEmpresa" method="post">
         Nome: <input type="text" name="nome">
         <input type="submit" value="Enviar">
     </form>
@@ -30,9 +27,12 @@
         <input type="submit" value="Entrar">
     </form>
     </br>
-    <form action="logout" method="post">
+    <form action="fazTudo?tarefa=Logout" method="post">
         <input type="submit" value="Deslogar">
     </form>
-
+    <br>
+    <form action="fazTudo?tarefa=BuscaEmpresa" method="post">
+        <input type="submit" value="BUSCA todas">
+    </form>
 </body>
 </html>
