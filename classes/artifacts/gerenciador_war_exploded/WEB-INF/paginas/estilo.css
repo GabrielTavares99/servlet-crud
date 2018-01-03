@@ -1,0 +1,18 @@
+
+body{
+    background: rgb(150, 151, 149);
+}
+form{
+    width: 50%;
+    height: auto;
+    background: red;
+    display: grid;
+    padding: 5px;
+    margin: 5px;
+}
+form input{
+    margin: 2px;
+}
+.titulo{
+    background: yellow;
+}

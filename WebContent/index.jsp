@@ -3,14 +3,17 @@
 <html>
 <head>
     <title>Gerenciador de empresas</title>
+    <style>
+        <%@ include file="WEB-INF/paginas/estilo.css"%>
+    </style>
 </head>
 <body>
     <c:choose>
         <c:when test="${usuarioLogado==null}">
-            Bem vindo ao nosso gerenciador de empresas!<br/>
+            <div class="titulo">Bem vindo ao nosso gerenciador de empresas!</div>
         </c:when>
         <c:when test="${usuarioLogado!=null}">
-            ${usuarioLogado.email} bem vindo ao nosso gerenciador de empresas!<br/>
+            <div class="titulo">${usuarioLogado.email} bem vindo ao nosso gerenciador de empresas!</div>
         </c:when>
     </c:choose>
 <%--<c:if test="${usuarioLogado!=null}">--%>
